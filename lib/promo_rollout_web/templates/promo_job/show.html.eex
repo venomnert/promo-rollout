@@ -1,0 +1,43 @@
+<h1>Show Promo job</h1>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @promo_job.name %>
+  </li>
+
+  <li>
+    <strong>Rolled out:</strong>
+    <%= @promo_job.rolled_out %>
+  </li>
+
+  <li>
+    <strong>Take down:</strong>
+    <%= @promo_job.take_down %>
+  </li>
+
+  <li>
+    <strong>Start date:</strong>
+    <%= @promo_job.start_date %>
+  </li>
+
+  <li>
+    <strong>End date:</strong>
+    <%= @promo_job.end_date %>
+  </li>
+
+  <li>
+    <strong>Banners:</strong>
+    <%= @promo_job.banners %>
+  </li>
+
+  <li>
+    <strong>Draft:</strong>
+    <%= @promo_job.draft %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.promo_job_path(@conn, :edit, @promo_job) %></span>
+<span><%= link "Back", to: Routes.promo_job_path(@conn, :index) %></span>

@@ -1,0 +1,32 @@
+<h1>Listing Landing page urls</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Url</th>
+      <th>End date</th>
+      <th>Redirected</th>
+      <th>Draft</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for landing_page_url <- @landing_page_urls do %>
+    <tr>
+      <td><%= landing_page_url.url %></td>
+      <td><%= landing_page_url.end_date %></td>
+      <td><%= landing_page_url.redirected %></td>
+      <td><%= landing_page_url.draft %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.landing_page_url_path(@conn, :show, landing_page_url) %></span>
+        <span><%= link "Edit", to: Routes.landing_page_url_path(@conn, :edit, landing_page_url) %></span>
+        <span><%= link "Delete", to: Routes.landing_page_url_path(@conn, :delete, landing_page_url), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Landing page url", to: Routes.landing_page_url_path(@conn, :new) %></span>

@@ -1,0 +1,5 @@
+<h1>Edit Landing page url</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.landing_page_url_path(@conn, :update, @landing_page_url)) %>
+
+<span><%= link "Back", to: Routes.landing_page_url_path(@conn, :index) %></span>

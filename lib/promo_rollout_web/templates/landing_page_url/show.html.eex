@@ -1,0 +1,28 @@
+<h1>Show Landing page url</h1>
+
+<ul>
+
+  <li>
+    <strong>Url:</strong>
+    <%= @landing_page_url.url %>
+  </li>
+
+  <li>
+    <strong>End date:</strong>
+    <%= @landing_page_url.end_date %>
+  </li>
+
+  <li>
+    <strong>Redirected:</strong>
+    <%= @landing_page_url.redirected %>
+  </li>
+
+  <li>
+    <strong>Draft:</strong>
+    <%= @landing_page_url.draft %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.landing_page_url_path(@conn, :edit, @landing_page_url) %></span>
+<span><%= link "Back", to: Routes.landing_page_url_path(@conn, :index) %></span>

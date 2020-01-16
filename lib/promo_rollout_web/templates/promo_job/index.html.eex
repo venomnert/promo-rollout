@@ -1,0 +1,38 @@
+<h1>Listing Promo jobs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Rolled out</th>
+      <th>Take down</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Banners</th>
+      <th>Draft</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for promo_job <- @promo_jobs do %>
+    <tr>
+      <td><%= promo_job.name %></td>
+      <td><%= promo_job.rolled_out %></td>
+      <td><%= promo_job.take_down %></td>
+      <td><%= promo_job.start_date %></td>
+      <td><%= promo_job.end_date %></td>
+      <td><%= promo_job.banners %></td>
+      <td><%= promo_job.draft %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.promo_job_path(@conn, :show, promo_job) %></span>
+        <span><%= link "Edit", to: Routes.promo_job_path(@conn, :edit, promo_job) %></span>
+        <span><%= link "Delete", to: Routes.promo_job_path(@conn, :delete, promo_job), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Promo job", to: Routes.promo_job_path(@conn, :new) %></span>
