@@ -2,7 +2,7 @@ defmodule PromoRollout.Promos.PromoJob do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias PromoRollout.Promos.LandingPageUrl
+  alias PromoRollout.Promos.{LandingPageUrl, Region}
 
   schema "promo_jobs" do
     field(:banners, :map)
@@ -14,6 +14,7 @@ defmodule PromoRollout.Promos.PromoJob do
     field(:take_down, :boolean, default: false)
 
     has_one(:url, LandingPageUrl)
+    belongs_to(:region, Region)
 
     timestamps()
   end

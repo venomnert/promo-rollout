@@ -13,10 +13,6 @@
   <%= datetime_select f, :end_date %>
   <%= error_tag f, :end_date %>
 
-  <%= label f, :redirected %>
-  <%= checkbox f, :redirected %>
-  <%= error_tag f, :redirected %>
-
   <%= label f, :draft %>
   <%= checkbox f, :draft %>
   <%= error_tag f, :draft %>

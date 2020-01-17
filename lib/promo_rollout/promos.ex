@@ -6,7 +6,7 @@ defmodule PromoRollout.Promos do
   import Ecto.Query, warn: false
   alias PromoRollout.Repo
 
-  alias PromoRollout.Promos.PromoJob
+  alias PromoRollout.Promos.{PromoJob, LandingPageUrl, Region}
 
   @doc """
   Returns the list of promo_jobs.
@@ -196,5 +196,23 @@ defmodule PromoRollout.Promos do
   """
   def change_landing_page_url(%LandingPageUrl{} = landing_page_url) do
     LandingPageUrl.changeset(landing_page_url, %{})
+  end
+
+  @doc """
+  Creates a region.
+
+  ## Examples
+
+      iex> create_region!(%{field: value})
+      {:ok, %Region{}}
+
+      iex> create_region!(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_region!(attrs \\ %{}) do
+    %Region{}
+    |> Region.changeset(attrs)
+    |> Repo.insert!()
   end
 end
