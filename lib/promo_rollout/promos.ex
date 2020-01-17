@@ -3,9 +3,11 @@ defmodule PromoRollout.Promos do
   The Promos context.
   """
 
-  import Ecto.Query, warn: false
-  alias PromoRollout.Repo
+  @banners ["enhanced_promo_bar", "promo_takeover", "body_promo", "store_slider"]
 
+  import Ecto.Query, warn: false
+
+  alias PromoRollout.Repo
   alias PromoRollout.Promos.{PromoJob, LandingPageUrl, Region}
 
   @doc """
@@ -51,7 +53,7 @@ defmodule PromoRollout.Promos do
   """
   def create_promo_job(attrs \\ %{}) do
     %PromoJob{}
-    |> PromoJob.changeset(attrs)
+    |> PromoJob.changeset(merge_banners(attrs))
     |> Repo.insert()
   end
 
@@ -69,7 +71,7 @@ defmodule PromoRollout.Promos do
   """
   def update_promo_job(%PromoJob{} = promo_job, attrs) do
     promo_job
-    |> PromoJob.changeset(attrs)
+    |> PromoJob.changeset(merge_banners(attrs))
     |> Repo.update()
   end
 
@@ -102,7 +104,17 @@ defmodule PromoRollout.Promos do
     PromoJob.changeset(promo_job, %{})
   end
 
-  alias PromoRollout.Promos.LandingPageUrl
+  defp merge_banners(attrs) do
+    @banners
+    |> Enum.reduce(%{"banners" => %{}}, fn k, acc ->
+      case Map.has_key?(attrs, k) do
+        true -> Map.put(acc, "banners", Map.merge(acc["banners"], %{k => attrs[k]}))
+        false -> acc
+      end
+    end)
+    |> Map.merge(attrs)
+  end
+
 
   @doc """
   Returns the list of landing_page_urls.

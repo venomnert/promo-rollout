@@ -1,4 +1,5 @@
 <%= form_for @changeset, @action, fn f -> %>
+<% IO.inspect(@changeset, label: "RESULT") %>
   <%= if @changeset.action do %>
     <div class="alert alert-danger">
       <p>Oops, something went wrong! Please check the errors below.</p>
@@ -9,29 +10,31 @@
   <%= text_input f, :name %>
   <%= error_tag f, :name %>
 
-  <%= label f, :rolled_out %>
-  <%= checkbox f, :rolled_out %>
-  <%= error_tag f, :rolled_out %>
-
-  <%= label f, :take_down %>
-  <%= checkbox f, :take_down %>
-  <%= error_tag f, :take_down %>
-
   <%= label f, :start_date %>
-  <%= datetime_select f, :start_date %>
+  <%= datetime_select f, :start_date, year: [options: 2020..2050] %>
   <%= error_tag f, :start_date %>
 
   <%= label f, :end_date %>
-  <%= datetime_select f, :end_date %>
+  <%= datetime_select f, :end_date, year: [options: 2020..2050] %>
   <%= error_tag f, :end_date %>
 
-  <%= label f, :banners %>
-  <%= text_input f, :banners %>
+ 
+  <%= for {k,v} <- Ecto.Changeset.fetch_field!(@changeset, :banners) do %>
+    <%= label f, String.to_atom(k) %>
+    <%= checkbox f, String.to_atom(k), [value: v] %>
+  <% end %>
   <%= error_tag f, :banners %>
 
   <%= label f, :draft %>
   <%= checkbox f, :draft %>
   <%= error_tag f, :draft %>
+
+  <%= for {k,v} <- Ecto.Changeset.fetch_field!(@changeset, :banners) do %>
+    <%= if String.to_atom(v) do %>
+      <p><%= k %></p>
+      <% text_input String.to_atom(k<>"fasf"), :test %>
+    <% end %>
+  <% end %>
 
   <div>
     <%= submit "Save" %>

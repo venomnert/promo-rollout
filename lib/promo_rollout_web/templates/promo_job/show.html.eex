@@ -29,7 +29,11 @@
 
   <li>
     <strong>Banners:</strong>
-    <%= @promo_job.banners %>
+    <ul>
+       <%= for {k,v} <- @promo_job.banners do %>
+        <li><%= k %>: <%= v %></li>
+       <% end %>
+    </ul>  
   </li>
 
   <li>

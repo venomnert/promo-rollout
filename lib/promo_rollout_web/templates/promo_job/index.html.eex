@@ -22,9 +22,12 @@
       <td><%= promo_job.take_down %></td>
       <td><%= promo_job.start_date %></td>
       <td><%= promo_job.end_date %></td>
-      <td><%= promo_job.banners %></td>
+      <td>
+        <%= for {k,v} <- promo_job.banners do %>
+          <p><%= k %>: <%= v %></p>
+        <% end %>
+      </td>
       <td><%= promo_job.draft %></td>
-
       <td>
         <span><%= link "Show", to: Routes.promo_job_path(@conn, :show, promo_job) %></span>
         <span><%= link "Edit", to: Routes.promo_job_path(@conn, :edit, promo_job) %></span>
