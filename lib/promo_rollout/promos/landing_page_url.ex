@@ -10,7 +10,7 @@ defmodule PromoRollout.Promos.LandingPageUrl do
     field(:redirected, :boolean, default: false)
     field(:url, :string)
 
-    has_one(:promo, PromoJob)
+    belongs_to(:promo_job, PromoJob)
 
     timestamps()
   end

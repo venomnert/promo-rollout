@@ -5,7 +5,7 @@ defmodule PromoRollout.Promos.PromoJob do
   alias PromoRollout.Promos.{LandingPageUrl, Region}
 
   schema "promo_jobs" do
-    field(:banners, :map)
+    field(:banners, :map, default: %{"enhanced_promo_bar" => "", "promo_takeover" => "", "body_promo" => "", "store_slider" => ""})
     field(:draft, :boolean, default: true)
     field(:end_date, :utc_datetime)
     field(:name, :string)
@@ -13,7 +13,7 @@ defmodule PromoRollout.Promos.PromoJob do
     field(:start_date, :utc_datetime)
     field(:take_down, :boolean, default: false)
 
-    has_one(:url, LandingPageUrl)
+    has_one(:landing_page_url, LandingPageUrl)
     belongs_to(:region, Region)
 
     timestamps()

@@ -8,7 +8,7 @@ defmodule PromoRollout.Repo.Migrations.CreatePromoJobs do
       add(:take_down, :boolean, default: false, null: false)
       add(:start_date, :utc_datetime)
       add(:end_date, :utc_datetime)
-      add(:banners, :map)
+      add(:banners, :map, default: %{"enhanced_promo_bar" => "", "promo_takeover" => "", "body_promo" => "", "store_slider" => ""})
       add(:draft, :boolean, default: true, null: false)
 
       timestamps()
